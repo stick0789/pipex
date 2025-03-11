@@ -6,7 +6,7 @@
 /*   By: jaacosta <jaacosta@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:35:11 by jaacosta          #+#    #+#             */
-/*   Updated: 2024/11/06 18:51:52 by jaacosta         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:03:21 by jaacosta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+//int		ft_printf(char const *format, ...)
 //t_list	*ft_lstnew(void *content);
 //void	ft_lstadd_front(t_list **lst, t_list *new);
 //int		ft_lstsize(t_list *lst);

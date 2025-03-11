@@ -6,7 +6,7 @@
 #    By: jaacosta <jaacosta@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/24 17:25:47 by jaacosta          #+#    #+#              #
-#    Updated: 2025/02/24 17:25:50 by jaacosta         ###   ########.fr        #
+#    Updated: 2025/02/26 17:13:16 by jaacosta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS	= -Wall -Wextra -Werror -g
 AR	= ar -rcs
 RM	= rm -rf
 
-SRCS 	=  
+SRCS 	= pipex.c 
 	  
 SRC_PATH = ./src/
 OBJ_PATH = ./tmp/
@@ -28,7 +28,7 @@ HEADERS  = -I$(H_PATH)
 DIRSRC	 = $(addprefix $(SRC_PATH), $(SRCS))
 OBJS 	 = $(addprefix $(OBJ_PATH), $(SRCS:.c=.o))
 
-all	:	makelib makeminilib $(OBJ_PATH) $(NAME)
+all	:	makelib $(OBJ_PATH) $(NAME)
 
 makelib	:	
 		$(MAKE) -C libft 
