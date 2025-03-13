@@ -17,7 +17,7 @@ CFLAGS	= -Wall -Wextra -Werror -g
 AR	= ar -rcs
 RM	= rm -rf
 
-SRCS 	= pipex.c 
+SRCS 	= pipex.c utils.c
 	  
 SRC_PATH = ./src/
 OBJ_PATH = ./tmp/

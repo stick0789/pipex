@@ -62,25 +62,25 @@ static char	*fill_line_buffer(int fd, char *left_c, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*left_c;
+	static char	*left_c[MAX_FD];
 	char		*line;
 	char		*buffer;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
-		free(left_c);
+		free(left_c[fd]);
 		free(buffer);
-		left_c = NULL;
+		left_c[fd] = NULL;
 		buffer = NULL;
 		return (NULL);
 	}
 	if (!buffer)
 		return (NULL);
-	line = fill_line_buffer(fd, left_c, buffer);
+	line = fill_line_buffer(fd, left_c[fd], buffer);
 	free (buffer);
 	if (!line)
 		return (NULL);
-	left_c = set_line(line);
+	left_c[fd] = set_line(line);
 	return (line);
 }

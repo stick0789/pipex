@@ -1,75 +1,17 @@
 #include "pipex.h"
 
-char    *find_path(char *cmd, char **envp)
+void    error_message()
 {
-    char    **paths;
-    char    *path;
-    int         i;
-    char    *part_path;
-
-    i = 0;
-    while (ft_strnstr(envp[i], "PATH", 4) == 0)
-        i++;
-    paths = ft_split(envp[i] + 5, ':');
-    i  = 0;
-    while (paths[i])
-    {
-        part_path = ft_strjoin(paths[i], "/");
-        path = ft_strjoin(part_path, cmd);
-        free(part_path);
-        if (access(path, F_OK) == 0)
-            return (path);
-        free(path);
-        i++;
-    }
-    i = -1;
-    //free split
-    return (0);
-    
+    perror("Error");
+    exit(EXIT_FAILURE);
 }
 
-void    execute(char *av, char **envp)
+void	how_to_use(void)
 {
-    char    **cmd;
-    int     i;
-    char    *path;
-
-    i = -1;
-    cmd = ft_split(av, ' ');
-    path = find_path(cmd[0], envp);
-    if (!path)
-    {
-        while (cmd[++i])
-            free(cmd[i]);
-        free(cmd);
-        ft_printf("Error Message");
-    }
-    if (execve(path, cmd, envp) == -1)
-        ft_printf("Error Message");
-}
-
-void    create_process(char *av, char **envp)
-{
-    pid_t   pid;
-    int         fd[2];
-
-    if (pipe(fd) == -1)
-        ft_printf("Error Message");
-    pid = fork();
-    if (pid == -1)
-        ft_printf("Error Message");
-    if (pid == 0)
-    {
-        close(fd[0]);
-        dup2(fd[1], STDOUT_FILENO);
-        execute(av, envp);
-    }
-    else
-    {
-        close(fd[1]);
-        dup2(fd[0], STDOUT_FILENO);
-        waitpid(pid, NULL, 0);
-    }
+	ft_putstr_fd("Error: Bad argument", 2);
+	ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
+	ft_putstr_fd("    ./pipex \"here_doc\" <LIMITER> <cmd> <cmd1> <...> <file>\n", 1);
+	exit(EXIT_SUCCESS);
 }
 
 void    here_doc(char *limitter, int ac)
@@ -86,17 +28,24 @@ void    here_doc(char *limitter, int ac)
     if (reader == 0)
     {
         close(fd[0]);
-        while (get_next_line(&line))
+        //while (get_next_line(&line))
+        while ((line = get_next_line(STDIN_FILENO)))
         {
             if (ft_strncmp(line, limitter, ft_strlen(limitter)) == 0)
+            {
+                free(line);
                 exit(EXIT_SUCCESS);
+            }
             write(fd[1], line, ft_strlen(line));
+            free(line);
         }
+        exit(EXIT_SUCCESS);
     }
     else
     {
         close(fd[1]);
         dup2(fd[0], STDIN_FILENO);
+        close(fd[0]);
         wait(NULL);
     }
 }

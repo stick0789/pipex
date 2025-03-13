@@ -26,8 +26,8 @@ SRCS = ft_strlen.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 	   ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	   control_basics.c control_hexa.c control_unsignedint.c \
 	   control_voidptr.c ft_printf.c \
-	   get_next_line.c get_next_line_utils.c get_next_line_bonus.c \
-	   get_next_line_utils_bonus.c
+	   get_next_line.c 
+#get_next_line_utils_bonus.c get_next_line_utils.c  get_next_line_bonus.c 
 	 
 SRC_PATH = ./src/
 OBJ_PATH = ./tmp/
