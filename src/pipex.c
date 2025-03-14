@@ -23,6 +23,10 @@ char    *find_path(char *cmd, char **envp)
         i++;
     }
     free_split(paths);
+    /*i = -1;
+	while (paths[++i])
+		free(paths[i]);
+	free(paths);*/
     return (0);
     
 }
@@ -66,7 +70,7 @@ void    create_process(char *av, char **envp)
     else
     {
         close(fd[1]);
-        dup2(fd[0], STDOUT_FILENO);
+        dup2(fd[0], STDIN_FILENO);
         waitpid(pid, NULL, 0);
     }
 }
@@ -104,7 +108,7 @@ int main(int ac, char **av, char **envp)
         else
         {
             i = 2;
-            outfile = open_file(av[ac - 1], 0);
+            outfile = open_file(av[ac - 1], 1);
             infile = open_file(av[1], 2);
             dup2(infile, STDIN_FILENO);
         }

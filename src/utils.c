@@ -21,16 +21,18 @@ void    here_doc(char *limitter, int ac)
     char    *line;
 
     if (ac < 6)
-        ft_printf("Error Message");
+        how_to_use();
     if (pipe(fd) == -1)
-        ft_printf("Error Message");
+        error_message();
     reader = fork();
     if (reader == 0)
     {
         close(fd[0]);
         //while (get_next_line(&line))
         while ((line = get_next_line(STDIN_FILENO)))
+        //while (1)
         {
+            //line = get_next_line(STDIN_FILENO);
             if (ft_strncmp(line, limitter, ft_strlen(limitter)) == 0)
             {
                 free(line);
@@ -45,7 +47,7 @@ void    here_doc(char *limitter, int ac)
     {
         close(fd[1]);
         dup2(fd[0], STDIN_FILENO);
-        close(fd[0]);
+        //close(fd[0]);
         wait(NULL);
     }
 }
