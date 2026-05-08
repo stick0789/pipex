@@ -1,6 +1,6 @@
 # pipex
 
-A Unix shell pipeline implementation in C that replicates the behavior of shell pipes using system calls like `fork()`, `pipe()`, and `execve()` [1](#2-0) . This project is part of the 42 school curriculum and demonstrates advanced understanding of Unix process management and inter-process communication.
+A Unix shell pipeline implementation in C that replicates the behavior of shell pipes using system calls like `fork()`, `pipe()`, and `execve()`. This project is part of the 42 school curriculum and demonstrates advanced understanding of Unix process management and inter-process communication.
 
 ## Table of Contents
 
@@ -234,11 +234,6 @@ This implementation follows 42 school coding standards and uses only authorized 
 - Memory management
 - Error handling
 
-For more detailed technical information, refer to the [Glossary wiki page](/wiki/stick0789/pipex#5).
-
 ## Notes
 
 This README.md provides comprehensive documentation for the pipex project, including build instructions, usage examples, and technical implementation details. The project demonstrates advanced Unix programming concepts including process creation, inter-process communication, and file descriptor manipulation.
-
-Wiki pages you might want to explore:
-- [Glossary (stick0789/pipex)](/wiki/stick0789/pipex#5)
